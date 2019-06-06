@@ -6,6 +6,7 @@ var path = require('path');
 server.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 server.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 server.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+server.use('/ass', express.static(__dirname + '/assets'));
 
 server.get('/', function(request, reponse) {
     reponse.sendFile('index.html', {root: path.join(__dirname, './html')});
