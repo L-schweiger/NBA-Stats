@@ -1,5 +1,11 @@
-function getLiveGames(){
+var unirest = require('unirest');
 
+var apikey = 'ad4e9b54cfdc73473787113ab18601f16cd0e3610af8a856b74b394145d3803c';
+function getLiveGames(){
+    unirest.get("https://allsportsapi.com/api/basketball/?met=Livescore&APIkey="+apikey)
+.end(function (result) {
+  console.log(result.body);
+});
 }
 
 function getTeam(){
@@ -43,4 +49,9 @@ function fillLiveHtml(){
     '                  </div>'+
     '                </div>';
         document.getElementById('dynamiccontent').innerHTML = string;
+}
+
+module.exports = {
+    getLiveGames,
+    getTeam
 }

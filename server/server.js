@@ -1,6 +1,7 @@
 var express = require('express');
 var server = express();
 var path = require('path');
+var apiconnection = require('./apiconnection');
 //var bootstrap = require('bootstrap'); umgangen mit direkter css und js-einbindung per pfad
 
 server.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
@@ -14,5 +15,6 @@ server.get('/', function(request, reponse) {
 });
 
 server.listen(3000, function() {
-    console.log('Server listening to :3000')
+    console.log('Server listening to :3000');
+    //apiconnection.getLiveGames(); steht hier zu testzwecken
 })
