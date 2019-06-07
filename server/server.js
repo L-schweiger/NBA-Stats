@@ -8,11 +8,17 @@ server.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 server.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 server.use('/ass', express.static(__dirname + '/assets'));
 
+
 server.get('/anleitung', function(request, response) {
     response.sendFile('anleitung.html', {root: path.join(__dirname, './html')});
 });
 server.get('/',apiconnection.getLiveGames,buildHtml);
+server.get('/leagues',apiconnection.getLeagues,toClient);
 
+
+function toClient(request,response,next){
+    response.json(request.leaguedata);
+}
 
 function buildHtml(request, response, next) {
     var htmlBeforeRow = '<!DOCTYPE html>'+
