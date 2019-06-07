@@ -1,11 +1,29 @@
-var unirest = require('unirest');
+//var unirest = require('unirest');
+const request = require('request');
 
 var apikey = 'ad4e9b54cfdc73473787113ab18601f16cd0e3610af8a856b74b394145d3803c';
-function getLiveGames(){
-    unirest.get("https://allsportsapi.com/api/basketball/?met=Livescore&APIkey="+apikey)
-.end(function (result) {
-  console.log(result.body);
-});
+function getLiveGames(mwRequest,mwResult,mwNext){
+    var urlLive = "https://allsportsapi.com/api/basketball/?met=Livescore&APIkey="+apikey;
+    var data = [];
+
+    request({url: urlLive, json: true}, (error, response) => {
+        if(response.body.success == 1){
+            data.push(response.body.result.length); // Anzahl der Live-Spiele
+            response.body.result.forEach(function(res) {
+                data.push(res.event_home_team); // teamname 1
+                data.push(res.home_team_key); // teamkey 1
+                data.push(res.event_away_team); // teamname 2
+                data.push(res.away_team_key); // teamkey 2
+                data.push(res.event_key); // eventkey
+                data.push(res.event_date); // startdatum
+                data.push(res.event_time); // startzeit
+                data.push(res.league_name); // liganame
+                data.push(res.country_name); // standort des spiels (land)
+              });
+              mwRequest.livedata = data;
+              mwNext();
+        }
+    })
 }
 
 function getTeam(){
@@ -13,6 +31,8 @@ function getTeam(){
 }
 
 function fillLiveHtml(){
+    var data = getLiveGames();
+    console.log(data);
     var string = '<div class="col-md-4 mb-5">'+
     '                  <div class="card h-100">'+
     '                    <img class="card-img-top" src="/ass/versus.png" alt="">'+
