@@ -8,17 +8,16 @@ function getLiveGames(mwRequest,mwResult,mwNext){
 
     request({url: urlLive, json: true}, (error, response) => {
         if(response.body.success == 1){
-            data.push(response.body.result.length); // Anzahl der Live-Spiele
+            mwRequest.liveamount = response.body.result.length-1; // Anzahl der Live-Spiele
             response.body.result.forEach(function(res) {
                 data.push(res.event_home_team); // teamname 1
-                data.push(res.home_team_key); // teamkey 1
                 data.push(res.event_away_team); // teamname 2
-                data.push(res.away_team_key); // teamkey 2
-                data.push(res.event_key); // eventkey
+                data.push(res.event_final_result); // standings (form: XXhometeam - XXenemyteam)
                 data.push(res.event_date); // startdatum
                 data.push(res.event_time); // startzeit
                 data.push(res.league_name); // liganame
-                data.push(res.country_name); // standort des spiels (land)
+                if(res.country_name != 'World'){data.push(res.country_name)} // Land
+                else{data.push('International')}
               });
               mwRequest.livedata = data;
               mwNext();
