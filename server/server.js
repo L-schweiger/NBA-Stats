@@ -8,10 +8,11 @@ server.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 server.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 server.use('/ass', express.static(__dirname + '/assets'));
 
+server.get('/anleitung', function(request, response) {
+    response.sendFile('anleitung.html', {root: path.join(__dirname, './html')});
+});
 server.get('/',apiconnection.getLiveGames,buildHtml);
-// server.get('/', function(request, response) {
-//     reponse.sendFile('index.html', {root: path.join(__dirname, './html')});
-// });
+
 
 function buildHtml(request, response, next) {
     var htmlBeforeRow = '<!DOCTYPE html>'+
@@ -26,14 +27,14 @@ function buildHtml(request, response, next) {
     '    <body style="padding-top: 56px;">'+
     '            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">'+
     '              <div class="container">'+
-    '                <a class="navbar-brand" href="#">NBA Stats</a>'+
+    '                <a class="navbar-brand" href="">NBA Stats</a>'+
     '                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">'+
     '                  <span class="navbar-toggler-icon"></span>'+
     '                </button>'+
     '                <div class="collapse navbar-collapse" id="navbarResponsive">'+
     '                  <ul class="navbar-nav ml-auto">'+
     '                    <li class="nav-item active">'+
-    '                      <a class="nav-link" href="#">Startseite'+
+    '                      <a class="nav-link" href="">Startseite'+
     '                        <span class="sr-only">(current)</span>'+
     '                      </a>'+
     '                    </li>'+
