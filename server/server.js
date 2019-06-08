@@ -60,7 +60,7 @@ function buildHtml(request, response, next) {
     '                  <hr>'+
     '                </div>'+
     '              ';
-var htmlAfterRow = '            </div>'+
+    var htmlAfterRow = '            </div>'+
     '  '+
     '        <script src="/js/jquery.js"></script>'+
     '        <script src="/js/bootstrap.min.js"></script>'+
@@ -73,13 +73,12 @@ var htmlAfterRow = '            </div>'+
         '              <div class="row" style="text-align: center;" id="dynamiccontent">'+
         '	<div class="col-md-4 mb-5">'+
         '                  <div class="card h-100">'+
-        '                    <img class="card-img-top" src="/ass/versus.png" alt="">'+
+        '                    <img class="card-img-top" src="/ass/team1.png" alt="">'+
         '                    <div class="card-body">'+
         '                      <h4 class="card-title">' +request.livedata[0]+ '</h4>'+
         '                      <p class="card-text"><b>'+request.livedata[2].split('-')[0]+' Punkte erzielt</b></p>'+
         '                    </div>'+
         '                    <div class="card-footer">'+
-        '                      <a href="#" class="btn btn-primary">Team anzeigen</a>'+
         '                    </div>'+
         '                  </div>'+
         '                </div>'+
@@ -90,19 +89,17 @@ var htmlAfterRow = '            </div>'+
         '                      <p class="card-text">Datum: '+request.livedata[3]+'<br>Startzeit: '+request.livedata[4]+'<br>Liga: '+request.livedata[5]+'<br>Land: '+request.livedata[6]+'</p>'+
         '                    </div>'+
         '                    <div class="card-footer">'+
-        '                      <a href="#" class="btn btn-primary">Mehr Statistiken</a>'+
         '                    </div>'+
         '                  </div>'+
         '                </div>'+
         '                <div class="col-md-4 mb-5">'+
         '                  <div class="card h-100">'+
-        '                    <img class="card-img-top" src="/ass/versus.png" alt="">'+
+        '                    <img class="card-img-top" src="/ass/team2.png" alt="">'+
         '                    <div class="card-body">'+
         '                      <h4 class="card-title">' +request.livedata[1]+ '</h4>'+
         '                      <p class="card-text"><b>'+request.livedata[2].split('-')[1]+' Punkte erzielt</b></p>'+
         '                    </div>'+
         '                    <div class="card-footer">'+
-        '                      <a href="#" class="btn btn-primary">Team anzeigen</a>'+
         '                    </div>'+
         '                  </div>'+
         '                </div>'+
