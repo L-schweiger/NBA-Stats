@@ -1,14 +1,15 @@
 const http = require('http');
-const argv = require('yargs');
+const yargs = require('yargs');
 
-var cmd = process.argv[2] + ' ' + process.argv[3];
+var cmd = process.argv[2]
+var argv = yargs.argv;
 
 switch(cmd) {
-    case 'Alle Ligen':
+    case 'alle':
         allLeagues();
         break;
-    case 'Ligen aus':
-        countryLeagues(process.argv[4])
+    case 'land':
+        countryLeagues(argv.land)
         break;
     default:
         console.log('Gültige Commands:')
