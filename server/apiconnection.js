@@ -1,4 +1,3 @@
-//var unirest = require('unirest');
 const request = require('request');
 
 var apikey = 'ad4e9b54cfdc73473787113ab18601f16cd0e3610af8a856b74b394145d3803c';
@@ -25,16 +24,19 @@ function getLiveGames(mwRequest,mwResult,mwNext){
 }
 
 function getLeagues(mwRequest,mwResult,mwNext){
+    console.log(0);
     var urlLeagues = 'https://allsportsapi.com/api/basketball/?met=Leagues&APIkey='+apikey;
     mwRequest.leaguedata = [];
 
     request({url: urlLeagues, json: true}, (error, response) => {
         if(response.body.success == 1){
             mwRequest.leaguedata = response.body.result;
+            console.log(1);
               mwNext();
         }
         else{
             mwRequest.leaguedata.push('failed');
+            console.log(2);
             mwNext();
         }
     })

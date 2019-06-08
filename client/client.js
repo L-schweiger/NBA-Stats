@@ -1,0 +1,69 @@
+const http = require('http');
+const argv = require('yargs');
+
+var cmd = process.argv[2] + ' ' + process.argv[3];
+
+switch(cmd) {
+    case 'Alle Ligen':
+        allLeagues();
+        break;
+    case 'Ligen aus':
+        countryLeagues(process.argv[4])
+        break;
+    default:
+        console.log('Gültige Commands:')
+        console.log('"Alle Ligen" -> Liste aller Basketball-Ligen');
+        console.log('"Ligen aus Slovenia" -> Liste von Ligen aus dem Land Slowenien')
+        console.log('Länder bitte in englischer Sprache eingeben!')
+  }
+
+function allLeagues(){
+    var answer;
+    const options = {
+        host: 'localhost',
+        port: 3000,
+        path: '/leagues',
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'
+        }
+    };
+      // buffer für evtl. streams
+    var req = http.get(options, function(res) {
+        var bdc = [];
+        res.on('data', function(chunk) {
+          bdc.push(chunk);
+        })
+        .on('end', function() {
+          answer = JSON.parse(Buffer.concat(bdc).toString());
+          answer.forEach(function(ans) {
+            console.log(ans.league_name);
+          });
+        })
+      });
+}
+
+function countryLeagues(country){
+    var answer;
+    const options = {
+        host: 'localhost',
+        port: 3000,
+        path: '/leagues',
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'
+        }
+    };
+      // buffer für evtl. streams
+    var req = http.get(options, function(res) {
+        var bdc = [];
+        res.on('data', function(chunk) {
+          bdc.push(chunk);
+        })
+        .on('end', function() {
+          answer = JSON.parse(Buffer.concat(bdc).toString());
+          answer.forEach(function(ans) {
+            if(ans.country_name == country)
+            console.log(ans.league_name);
+          });
+        })
+      });
+}
