@@ -13,8 +13,8 @@ switch(cmd) {
         break;
     default:
         console.log('Gültige Commands:')
-        console.log('"Alle Ligen" -> Liste aller Basketball-Ligen');
-        console.log('"Ligen aus Slovenia" -> Liste von Ligen aus dem Land Slowenien')
+        console.log('"alle" -> Liste aller Basketball-Ligen');
+        console.log('"land --land=Slovenia" -> Liste von Ligen aus dem Land Slowenien')
         console.log('Länder bitte in englischer Sprache eingeben!')
   }
 
